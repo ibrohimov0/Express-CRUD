@@ -8,7 +8,6 @@ const Data = fs.readFileSync("./db.js", "utf-8",(err, data) =>{
         return data
 })
 
-
 app.get("/", function(req,res){
     console.log("GET!");
     res.send(Data)
@@ -24,12 +23,16 @@ app.post("/", function(req,res){
 })
 app.put("/", function(req,res){
     console.log("PUT!");
-
+    const putData = Data.replace(Data.charAt(req.body),req.body)
+    fs.writeFileSync("./db.js", `${putData}`,(err, data) =>{
+        if (err) throw err
+        console.log("PUTED!");
+    })
     res.send(Data)
 })
 app.delete("/", function(req,res){
     console.log("DELETE!");
-    deleteData = Data.replace(Data.charAt(req.body),"")
+    const deleteData = Data.replace(Data.charAt(req.body),"")
     fs.writeFileSync("./db.js", `${deleteData}`,(err, data) =>{
         if (err) throw err
         console.log("DELETED!");
