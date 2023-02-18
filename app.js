@@ -16,32 +16,39 @@ function writer(data) {
             if (err) throw err
     })
 }
-
-app.get("/", function(req,res){
+app.get("/users", function(req,res){
     console.log("GET!");
     const data = reader()
     res.status(201).json({
         data
     })
 })
-app.post("/", function(req,res){
+app.post("/users", function(req,res){
     console.log("POST!");
     const data = reader()
     data.push(req.body)
     writer(data)
+    res.status(201).json({
+        data
+    })
 })
-app.put("/", function(req,res){
+app.put("/users/:id", function(req,res){
     console.log("PUT!");
     const data = reader()
-})
-app.delete("/", function(req,res){
-    console.log("DELETE!");
-    const deleteData = Data.replace(Data.charAt(req.body),"")
-    fs.writeFileSync("./db.js", `${deleteData}`,(err, data) =>{
-        if (err) throw err
-        console.log("DELETED!");
+    data[req.params.id] = req.body
+    writer(data)
+    res.status(201).json({
+        data
     })
-    res.send(Data)
+})
+app.delete("/users/:id", function(req,res){
+    console.log("DELETE!");
+    const data = reader()
+    delete data[req.params.id]
+    writer(data)
+    res.status(201).json({
+        data
+    })
 })
 
 app.listen(Port)
