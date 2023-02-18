@@ -1,6 +1,7 @@
 const express = require("express")
 const fs = require("fs")
 const app = express()
+app.use(express.json())
 const Port = 1202
 
 function reader() {
@@ -44,7 +45,7 @@ app.put("/users/:id", function(req,res){
 app.delete("/users/:id", function(req,res){
     console.log("DELETE!");
     const data = reader()
-    delete data[req.params.id]
+    delete data[req.params.id-0]
     writer(data)
     res.status(201).json({
         data

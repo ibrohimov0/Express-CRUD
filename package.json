@@ -2,5 +2,23 @@
   "dependencies": {
     "express": "^4.18.2",
     "nodemon": "^2.0.20"
-  }
+  },
+  "name": "lesson6.express-crud",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrohimov0/Express-CRUD.git"
+  },
+  "author": "Abdulloh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibrohimov0/Express-CRUD/issues"
+  },
+  "homepage": "https://github.com/ibrohimov0/Express-CRUD#readme",
+  "description": ""
 }
